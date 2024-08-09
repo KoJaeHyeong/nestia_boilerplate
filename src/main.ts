@@ -80,10 +80,7 @@ class Application {
 
   // 개발 서버 & 상용 서버 로그 분기
   serverLog() {
-    if (
-      this.configService.get<string>('NODE_ENV') === 'dev' ||
-      this.configService.get<string>('NODE_ENV') === 'local'
-    ) {
+    if (this.configService.get<string>('NODE_ENV') === 'dev') {
       this.logger.log(
         `✅ Server on http://${ip.address()}:${this.PORT} / http://${ip.address()}:${this.PORT}/docs`,
       );
