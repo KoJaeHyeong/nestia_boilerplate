@@ -1,6 +1,6 @@
 {
   "name": "nestia_boilerplate",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
@@ -11,8 +11,8 @@
     "pm2dev": "pm2 start dist/src/main.js --watch",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
-    "dev": "npm run build && npm run pm2dev",
-    "start:dev": "nest start --watch",
+    "dev": "pm2 kill && npm run build && npm run pm2dev",
+    "local": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

@@ -8,9 +8,17 @@ const NESTIA_CONFIG: INestiaConfig = {
   output: 'src/',
 
   swagger: {
+    servers: [],
     openapi: '3.1',
-    output: 'dist/swagger.json',
+    // output: 'dist/swagger.json',
+    output: 'src/config/swagger/swagger.json',
     beautify: true,
+    info: {
+      version: '1.0.0',
+      license: {
+        name: 'Server_Api_BoilerPlate',
+      },
+    },
   },
 };
 export default NESTIA_CONFIG;

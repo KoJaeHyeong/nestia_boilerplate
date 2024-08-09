@@ -11,7 +11,7 @@ import { AppModule } from './app.module';
 
 class Application {
   private logger = new Logger(Application.name);
-  private readonly corsOriginList: string[];
+  private readonly corsOriginList: string[] | boolean;
   private readonly PORT: number;
   private prefix = 'api';
 
@@ -20,10 +20,11 @@ class Application {
     private readonly configService: ConfigService,
   ) {
     this.server = server;
-    this.corsOriginList = this.configService
-      .get<string>('CORS_LIST')
-      ?.split(',')
-      .map((origin) => origin.trim()) ?? ['*'];
+    this.corsOriginList =
+      this.configService
+        .get<string>('CORS_LIST')
+        ?.split(',')
+        .map((origin) => origin.trim()) ?? true;
 
     this.PORT = Number(this.configService.get<number>('PORT'));
   }
@@ -38,7 +39,8 @@ class Application {
     this.server.setGlobalPrefix(this.prefix, {
       exclude: ['/', '/docs'],
     });
-    // SwaggerConfig(this.server);
+
+    // SwaggerConfig(this.server); //todo Swagger를 한번 generate 해줘야함.
 
     this.server.useGlobalPipes(
       new ValidationPipe({
