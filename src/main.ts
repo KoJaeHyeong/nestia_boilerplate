@@ -8,12 +8,12 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express/interfaces';
 import * as ip from 'ip';
 import { AppModule } from './app.module';
+import { SwaggerConfig } from './config/swagger/swagger.config';
 
 class Application {
   private logger = new Logger(Application.name);
   private readonly corsOriginList: string[] | boolean;
   private readonly PORT: number;
-  private prefix = 'api';
 
   constructor(
     private readonly server: NestExpressApplication,
@@ -36,11 +36,7 @@ class Application {
       credentials: true,
     });
 
-    this.server.setGlobalPrefix(this.prefix, {
-      exclude: ['/', '/docs'],
-    });
-
-    // SwaggerConfig(this.server); //todo Swagger를 한번 generate 해줘야함.
+    SwaggerConfig(this.server); //todo Swagger를 한번 generate 해줘야함.
 
     this.server.useGlobalPipes(
       new ValidationPipe({
