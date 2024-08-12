@@ -9,9 +9,7 @@ export interface ISignUpUser
 }
 
 export interface IUSerInfo {
-  /**
-   * 유저 seq 아이디
-   */
+  /** 유저 seq 아이디 */
   id: string;
 
   /**

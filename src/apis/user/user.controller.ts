@@ -10,9 +10,9 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   /**
-   *
-   * @param ISignUpUser sdsdsds
+   * @summary 유저 회원가입
    * @returns void
+   * @param createUserDto
    */
   @TypedRoute.Post()
   signUp(@TypedBody() createUserDto: ISignUpUser) {

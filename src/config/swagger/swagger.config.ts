@@ -1,7 +1,10 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerModule } from '@nestjs/swagger';
+import * as dotenv from 'dotenv';
 import { readFileSync } from 'fs';
 import * as path from 'path';
+
+dotenv.config();
 
 export const SwaggerConfig = (app: INestApplication) => {
   const swaggerConfig = readFileSync(
@@ -11,15 +14,12 @@ export const SwaggerConfig = (app: INestApplication) => {
 
   const swaggerDoc = JSON.parse(swaggerConfig);
 
-  // swaggerDoc.servers.at(0).url = `${ip.address()}:${process.env.PORT}`;
-  // swaggerDoc.servers.at(0).description = 'SERVER_API';
-
   swaggerDoc.servers = [];
 
   SwaggerModule.setup('docs', app, swaggerDoc, {
     swaggerOptions: {
       defaultModelsExpandDepth: -1,
     },
-    customCss: '.servers { display: none }',
+    // customCss: '.servers { display: none }',
   });
 };

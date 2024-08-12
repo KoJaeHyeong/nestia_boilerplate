@@ -8,9 +8,7 @@ const NESTIA_CONFIG: INestiaConfig = {
   output: 'src/',
 
   swagger: {
-    servers: [],
-    openapi: '3.1',
-    // output: 'dist/swagger.json',
+    openapi: '3.0',
     output: 'dist/swagger.json',
     beautify: true,
     info: {
