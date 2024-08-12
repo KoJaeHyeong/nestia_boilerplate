@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { user } from '@prisma/client';
 import { DatabaseService } from 'src/db/database.service';
-import { ISignUpUser } from 'src/types/user/user.dto';
+import { ISignUpUser, IUSerInfo } from 'src/types/user/user.dto';
 
 @Injectable()
 export class UserService {
@@ -13,12 +12,14 @@ export class UserService {
     });
   }
 
-  async findUser(reqDto: string): Promise<user | undefined> {
-    const result: user[] = await this.databaseService.user.findMany({
+  async findUser(reqDto: string): Promise<IUSerInfo | undefined> {
+    const result: IUSerInfo[] = await this.databaseService.user.findMany({
       where: {
         name: reqDto,
       },
     });
+
+    console.log(result);
 
     return result.at(0);
   }

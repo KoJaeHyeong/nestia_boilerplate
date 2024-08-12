@@ -14,7 +14,7 @@ export const SwaggerConfig = (app: INestApplication) => {
   // swaggerDoc.servers.at(0).url = `${ip.address()}:${process.env.PORT}`;
   // swaggerDoc.servers.at(0).description = 'SERVER_API';
 
-  // swaggerDoc.servers = [];
+  swaggerDoc.servers = [];
 
   SwaggerModule.setup('docs', app, swaggerDoc, {
     swaggerOptions: {

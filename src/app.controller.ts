@@ -1,14 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiExcludeEndpoint } from '@nestjs/swagger';
+import { TypedRoute } from '@nestia/core';
+import { Controller } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @ApiExcludeEndpoint()
-  @Get()
-  getHello(): string {
+  /**
+   * @internal default Route hide
+   */
+
+  @TypedRoute.Get()
+  public getHello(): string {
     return this.appService.getHello();
   }
 }
